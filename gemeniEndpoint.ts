@@ -3,6 +3,7 @@ import { performance } from "perf_hooks";
 import { z } from "zod";
 import { sendGeminiStreamRequest } from "./lib/ai/gemini";
 import { ChatSDKError } from "./lib/errors";
+import { createRagPrompt } from "./lib/prompts/simpleAnswer";
 import type { SearchResponse } from "./lib/types";
 import { generateUUID } from "./lib/utils";
 import { vectorSearchService } from "./lib/vectorSearch";
@@ -26,28 +27,6 @@ const ragRequestBodySchema = z.object({
 });
 
 type RagRequestBody = z.infer<typeof ragRequestBodySchema>;
-
-// RAG prompt template for Vedic astrology expert
-const createRagPrompt = (query: string, contextChunks: string[]): string => {
-  const contextText =
-    contextChunks.length > 0
-      ? contextChunks
-          .map(
-            (chunk, index) => `Context ${index + 1}:
-${chunk}`
-          )
-          .join("\n\n")
-      : "No relevant context found.";
-
-  return `You are an expert Vedic astrologer and spiritual guide with deep knowledge of ancient Indian wisdom, astrology, and philosophy. You have studied the Vedas, Upanishads, and classical astrological texts extensively. Use the following context from authentic Vedic sources to answer the user's question with authority and wisdom.
-
-Context:
-${contextText}
-
-User Question: ${query}
-
-Please provide a comprehensive and authoritative answer based on the Vedic context provided. If the context doesn't contain enough information to answer the question accurately, acknowledge this and provide insights based on your deep knowledge of Vedic astrology and philosophy. Always maintain the spiritual and philosophical depth that characterizes authentic Vedic wisdom.`;
-};
 
 export const geminiEndpoint = async (req: Request, res: Response) => {
   let requestBody: RagRequestBody;
