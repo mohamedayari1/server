@@ -1,16 +1,19 @@
 // RAG prompt template for Vedic astrology expert
-export const createRagPrompt = (query: string, contextChunks: string[]): string => {
-    const contextText =
-      contextChunks.length > 0
-        ? contextChunks
-            .map(
-              (chunk, index) => `Context ${index + 1}:
+export const createRagPrompt = (
+  query: string,
+  contextChunks: string[]
+): string => {
+  const contextText =
+    contextChunks.length > 0
+      ? contextChunks
+          .map(
+            (chunk, index) => `Context ${index + 1}:
   ${chunk}`
-            )
-            .join("\n\n")
-        : "No relevant context found.";
-  
-    return `You are an expert Vedic astrologer and spiritual guide with deep knowledge of ancient Indian wisdom, astrology, and philosophy. You have studied the Vedas, Upanishads, and classical astrological texts extensively.
+          )
+          .join("\n\n")
+      : "No relevant context found.";
+
+  return `You are an expert Vedic astrologer and spiritual guide with deep knowledge of ancient Indian wisdom, astrology, and philosophy. You have studied the Vedas, Upanishads, and classical astrological texts extensively.
   
   Context from Vedic Sources:
   ${contextText}
@@ -66,5 +69,7 @@ export const createRagPrompt = (query: string, contextChunks: string[]): string 
   - If context is insufficient, draw from traditional Vedic knowledge
   - Maintain the spiritual depth characteristic of Vedic teachings
   
-  Please format your response using proper markdown syntax for optimal readability.`;
-  };
+  Please format your response using proper markdown syntax for optimal readability.
+  ALWAYS GIVE SHORT ANSWERS THAT DONT EXCEED 10 WORDS.
+  `;
+};
