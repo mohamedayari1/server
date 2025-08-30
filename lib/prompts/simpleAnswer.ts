@@ -70,6 +70,6 @@ export const createRagPrompt = (
   - Maintain the spiritual depth characteristic of Vedic teachings
   
   Please format your response using proper markdown syntax for optimal readability.
-  ALWAYS GIVE SHORT ANSWERS THAT DONT EXCEED 10 WORDS.
+  ALWAYS GIVE SHORT ANSWERS THAT DONT EXCEED 150 WORDS.
   `;
 };
