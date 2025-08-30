@@ -2,6 +2,7 @@ import cors from "cors";
 import express from "express";
 import { geminiEndpoint } from "./gemeniEndpoint";
 import { toneSpecificEndpoint } from "./toneSpecificEndpoint";
+import { mockToneSpecificEndpoint } from "./mockToneSpecificEndpoint";
 
 const app = express();
 
@@ -20,7 +21,7 @@ app.use(express.json());
 
 // Routes
 app.post("/gemini", geminiEndpoint);
-app.post("/gemini-tone", toneSpecificEndpoint); 
-
+// app.post("/gemini-tone", toneSpecificEndpoint);
+app.post("/gemini-tone", mockToneSpecificEndpoint);
 
 export default app;
