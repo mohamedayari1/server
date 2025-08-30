@@ -1,6 +1,7 @@
 import cors from "cors";
 import express from "express";
 import { geminiEndpoint } from "./gemeniEndpoint";
+import { toneSpecificEndpoint } from "./toneSpecificEndpoint";
 
 const app = express();
 
@@ -19,5 +20,7 @@ app.use(express.json());
 
 // Routes
 app.post("/gemini", geminiEndpoint);
+app.post("/gemini-tone", toneSpecificEndpoint); 
+
 
 export default app;
