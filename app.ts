@@ -9,7 +9,7 @@ const app = express();
 // CORS middleware - must come BEFORE other middleware
 app.use(
   cors({
-    origin: ["http://localhost:5173", "http://localhost:3000"], // Add your frontend URLs
+    origin: ["http://localhost:5173", "http://localhost:5174"], // Add your frontend URLs
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization", "Cache-Control"],
